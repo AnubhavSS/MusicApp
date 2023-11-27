@@ -11,13 +11,13 @@ interface Data{
 }
 
 interface SongItemProps{
-    onClick:(id:string)=>void;
+    onClick:(id:any)=>void;
     data:Data;
 }
 
 const SongItem:FC<SongItemProps> = ({onClick,data}) => {
   return (
-    <div className='relative group flex flex-col item-center justify-center rounded-md overflow-hidden gap-x-4 bg-neutral-400/5 cursor-pointer hover:bg-neutral-400/10 transition p-3'>
+    <div onClick={() => onClick(data)} className='relative group flex flex-col item-center justify-center rounded-md overflow-hidden gap-x-4 bg-neutral-400/5 cursor-pointer hover:bg-neutral-400/10 transition p-3'>
         <div className='relative aspect-square w-full h-full rounded-md overflow-hidden'>
             <Image className='object-cover' src={data.image || '/3d-movie.png'} fill alt={data.title} sizes="(min-width:64px) (min-height:64px)"/>
         </div>

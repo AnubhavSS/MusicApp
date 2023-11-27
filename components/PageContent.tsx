@@ -9,20 +9,20 @@ import useOnPlay from "@/hooks/useOnPlay";
 const PageContent = () => {
 const [songs, setsongs] = useState([])
   
-// useEffect(() => {
-//   async function getCharts() {
-//     try {
-//       const data = await fetchCharts();
-//       console.log(data);
-//       setsongs(data?.tracks)
-//     } catch (error) {
-//       console.error("Error fetching charts:", error);
-//       // Handle the error as needed
-//     }
-//   }
+useEffect(() => {
+  async function getCharts() {
+    try {
+      const data = await fetchCharts();
+      console.log(data);
+      setsongs(data?.tracks)
+    } catch (error) {
+      console.error("Error fetching charts:", error);
+      // Handle the error as needed
+    }
+  }
 
-//   getCharts(); // Call the function to fetch data
-// }, []);
+  getCharts(); // Call the function to fetch data
+}, []);
 
 const onPlay=useOnPlay()
 
@@ -39,7 +39,7 @@ if(songs.length===0)
       songs.map((item:any)=>(
         <SongItem
         key={item.key}
-        onClick={() => {onPlay(item?.url)}}
+        onClick={(item:any) => {onPlay(item)}}
         data={{
           title: item.title,
           artist: item.subtitle,
